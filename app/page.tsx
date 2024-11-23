@@ -68,7 +68,7 @@ export default function Home() {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then((stream) => {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const audioContext = new window.AudioContext();
         const analyser = audioContext.createAnalyser();
         const microphone = audioContext.createMediaStreamSource(stream);
         const scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
