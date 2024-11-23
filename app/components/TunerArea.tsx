@@ -20,7 +20,7 @@ export default function TunerArea({ order, centsOff, selected, notes }: ITunerAr
   return (
     <div>
       {/* Tuner Div */}
-      <div className="w-[800px] flex items-center select-none justify-center relative bg-[#ffffff] border border-[#e8e8e8] overflow-hidden mt-20 py-40 rounded-3xl ">
+      <div className="w-[800px] flex items-center select-none justify-center relative bg-[#ffffff] border border-[#e8e8e8] overflow-hidden py-40 rounded-3xl ">
         <div className="w-24 h-full absolute left-0 bottom-0 bg-gradient-to-r !z-50 from-[#242424]/10 to-transparent"></div>
 
         {/* Left-Right Dark Shadows */}
@@ -33,8 +33,8 @@ export default function TunerArea({ order, centsOff, selected, notes }: ITunerAr
             className="text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow">
             {Math.round(centsOff / 10) < 0 ? `${Math.round(centsOff / 10)} Incrase Tone` : ''}
             {Math.round(centsOff / 10) > 0 ? `+${Math.round(centsOff / 10)} Decrase Tone` : ''}
-            <span className={cx('hidden items-center gap-1',{
-              'text-primary flex': Math.round(centsOff / 10) == 0,
+            <span className={cx('flex items-center gap-1',{
+              'text-primary hidden': Math.round(centsOff / 10) != 0,
             })}>Correct <CheckMark className="text-primary" /></span>
           </div>
         </div>

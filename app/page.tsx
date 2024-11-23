@@ -136,15 +136,15 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#fafafa] flex items-center py-20 flex-col">
+    <div className="w-full min-h-screen bg-[#fafafa] flex items-center lg:py-32 md:py-16 sm:py-8 flex-col">
       <div className="flex flex-col gap-4 items-center">
       <h1 className="flex gap-4 items-center text-black justify-center text-[52px] font-bold tracking-tighter"><NextImage alt="Tuner App Logo" src="/tunerLogo.png" width={72} height={72} quality={100} priority />Tuner</h1>
       <p className="text-2xl text-black">Online Chromotic Tuner.</p>
       </div>
-      <div className="">
+      <div className="mt-12">
         <TunerArea order={order} centsOff={centsOff} selected={selected} notes={notes} />     
       </div>
-      <div className="text-[#8A8A8A] mt-20 text-center gap-2">
+      <div className="text-[#8A8A8A] mt-12 text-center gap-2">
 
       <span>2024 © Made by <a className="text-neutral-600 transition hover:text-neutral-900" href="https://x.com/astrodokki">Emir</a>. <br /> <span>All rights reserved.</span> </span>
 
