@@ -6,8 +6,8 @@ import NextImage from 'next/image';
 import TunerArea from "./components/TunerArea";
 
 export default function Home() {
-  const [note, setNote] = useState(null); // Tespit edilen nota
-  const [frequency, setFrequency] = useState<number | null>(null); // Tespit edilen frekans
+  const [note, setNote] = useState<string | null>(null); // Tespit edilen nota
+  const [frequency, setFrequency] = useState<number | null | string>(null); // Tespit edilen frekans
   const [centsOff, setCentsOff] = useState<number>(0); // Notanın ne kadar doğru çalındığını gösteren fark
   const [order, setOrder] = useState<number>(0);
   const [selected, setSelected] = useState<number>(0);
@@ -94,7 +94,6 @@ export default function Home() {
         const detectPitch = Pitchfinder.YIN({
           sampleRate: audioContext.sampleRate,
           threshold: 0.15,   // Eşik değeri
-          tolerance: 0.15   
         }); // Sample rate kullanarak YIN alg. oluştur
 
         scriptProcessor.onaudioprocess = function (event) {
@@ -103,10 +102,10 @@ export default function Home() {
 
           // Frekans tespiti yapıldıysa ve 1000 Hz'in altındaysa işlemleri yap
           if (detectedPitch && detectedPitch <= 1000) {
-            setFrequency(detectedPitch.toFixed(2)); // Frekansı ayarla
+            setFrequency(detectedPitch); // Frekansı ayarla
             const closestNote = getNoteFromFrequency(detectedPitch); // Nota tespiti ve ayarlama
             setNote(closestNote.note);
-            setCentsOff(closestNote.cents); // Cents farkını ayarla
+            setCentsOff(+closestNote.cents); // Cents farkını ayarla
             setOrder(closestNote.order);
             setSelected(closestNote.order * 10 + Math.round(centsOff / 10));
           }
@@ -116,7 +115,7 @@ export default function Home() {
   }, []);
 
   // Frekansa göre nota ismini ve cent farkını bulma fonksiyonu
-  function getNoteFromFrequency(frequency) {
+  function getNoteFromFrequency(frequency: number) {
     // En yakın notayı ve cent farkını bul
     let closestNote = notes[0];
     let minDiff = Math.abs(frequency - notes[0].frequency);
