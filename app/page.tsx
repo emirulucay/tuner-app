@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Pitchfinder from "pitchfinder";
 import NextImage from 'next/image';
 import TunerArea from "./components/TunerArea";
+import {motion} from 'framer-motion';
 
 export default function Home() {
   const [note, setNote] = useState<string | null>(null); // Tespit edilen nota
@@ -136,14 +137,14 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#fafafa] flex items-center lg:py-32 md:py-16 sm:py-8 flex-col">
+    <div className="w-full min-h-screen bg-[#fafafa] flex items-center lg:py-32 md:py-16 sm:py-8 flex-col select-none">
       <div className="flex flex-col gap-4 items-center">
-      <h1 className="flex gap-4 items-center text-black justify-center text-[52px] font-bold tracking-tighter"><NextImage alt="Tuner App Logo" src="/tunerLogo.png" width={72} height={72} quality={100} priority />Tuner</h1>
-      <p className="text-2xl text-black">Online Chromatic Tuner.</p>
+        <motion.h1 initial={{x: -5, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .25}}}  className="flex gap-4 items-center text-black justify-center text-[52px] font-bold tracking-tighter"><NextImage alt="Tuner App Logo" src="/tunerLogo.png" width={72} height={72} quality={100} priority />Tuner</motion.h1>
+        <motion.p initial={{x: -10, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .25, delay: 0.2}}} className="text-2xl text-black">Online Chromatic Tuner.</motion.p>
       </div>
-      <div className="mt-12">
+      <motion.div initial={{x: -15, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .7, delay: 0.6}}} className="mt-12">
         <TunerArea order={order} centsOff={centsOff} selected={selected} notes={notes} />     
-      </div>
+      </motion.div>
       <div className="text-[#8A8A8A] mt-12 text-center gap-2">
 
       <span>2024 © Made by <a className="text-neutral-600 transition hover:text-neutral-900" href="https://x.com/astrodokki">Emir</a>. <br /> <span>All rights reserved.</span> </span>
