@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Online Chromatic Tuner
+
+A web-based chromatic tuner that helps you tune any musical instrument with precision and ease.
+
+## Features
+
+- Real-time pitch detection
+- Visual feedback for tuning accuracy
+- Works with any musical instrument
+- Easy-to-use interface
+- No installation required - works directly in your browser
 
 ## Getting Started
 
-First, run the development server:
+### Microphone Access
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+When you first open the application, your browser will request microphone access permission. This is necessary for the tuner to detect the sound from your instrument. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Click "Allow" when prompted for microphone access
+- Make sure your device's microphone is working properly
+- For best results, use the tuner in a quiet environment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Using the Tuner
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Once microphone access is granted, the tuner will automatically begin detecting pitches
+2. Play a note on your instrument
+3. The display will show:
+   - The detected note name
+   - How far sharp or flat you are from the target pitch
+   - A visual indicator showing your tuning accuracy
 
-## Learn More
+The tuner provides real-time feedback, allowing you to make precise adjustments to achieve perfect tuning. The closer you get to the correct pitch, the more centered the indicator will be.
 
-To learn more about Next.js, take a look at the following resources:
+## Tips for Accurate Tuning
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Keep your instrument close to your device's microphone
+- Avoid background noise while tuning
+- Play notes clearly and individually
+- Wait for the reading to stabilize before making adjustments
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Technical Requirements
 
-## Deploy on Vercel
+- A modern web browser (Chrome, Firefox, Safari, or Edge)
+- A working microphone
+- Active internet connection
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+[Add your chosen license here]
