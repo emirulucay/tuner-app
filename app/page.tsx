@@ -139,7 +139,7 @@ export default function Home() {
     <div className="w-full min-h-screen bg-[#fafafa] flex items-center lg:py-32 md:py-16 sm:py-8 flex-col">
       <div className="flex flex-col gap-4 items-center">
       <h1 className="flex gap-4 items-center text-black justify-center text-[52px] font-bold tracking-tighter"><NextImage alt="Tuner App Logo" src="/tunerLogo.png" width={72} height={72} quality={100} priority />Tuner</h1>
-      <p className="text-2xl text-black">Online Chromotic Tuner.</p>
+      <p className="text-2xl text-black">Online Chromatic Tuner.</p>
       </div>
       <div className="mt-12">
         <TunerArea order={order} centsOff={centsOff} selected={selected} notes={notes} />     
