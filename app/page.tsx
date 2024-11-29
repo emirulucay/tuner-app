@@ -139,8 +139,8 @@ export default function Home() {
   return (
     <div className="w-full min-h-screen bg-[#fafafa] flex items-center lg:py-32 md:py-16 sm:py-8 flex-col select-none">
       <div className="flex flex-col gap-4 items-center">
-        <motion.h1 initial={{x: -5, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .25}}}  className="flex gap-4 items-center text-black justify-center text-[52px] font-bold tracking-tighter"><NextImage alt="Tuner App Logo" src="/tunerLogo.png" width={72} height={72} quality={100} priority />Tuner</motion.h1>
-        <motion.p initial={{x: -10, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .25, delay: 0.2}}} className="text-2xl text-black">Online Chromatic Tuner.</motion.p>
+        <motion.h1 initial={{x: -5, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .25}}}  className="flex gap-4 items-center text-neutral-900 justify-center text-3xl lg:text-5xl font-bold tracking-tighter "><div className="lg:w-16 lg:h-16 w-12 h-12 relative"><NextImage alt="Tuner App Logo" src="/tunerLogo.png" className="lg:w-16 lg:h-16 w-12 h-12" fill quality={100} priority /></div>Tuner</motion.h1>
+        <motion.p initial={{x: -10, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .25, delay: 0.2}}} className="text-xl lg:text-2xl text-neutral-900">Online Chromatic Tuner.</motion.p>
       </div>
       <motion.div initial={{x: -15, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .7, delay: 0.6}}} className="mt-12">
         <TunerArea order={order} centsOff={centsOff} selected={selected} notes={notes} />     
