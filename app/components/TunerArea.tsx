@@ -20,7 +20,7 @@ export default function TunerArea({ order, centsOff, selected, notes }: ITunerAr
   return (
     <div>
       {/* Tuner Div */}
-      <div className="w-[800px] flex items-center select-none justify-center relative bg-neutral-50 md:bg-white border md:border-neutral-200 border-neutral-50 overflow-hidden py-40 rounded-3xl ">
+      <div className="lg:w-[800px] md:w-[600px] flex items-center select-none justify-center relative bg-neutral-50 md:bg-white border md:border-neutral-200 border-neutral-50 overflow-hidden py-40 rounded-3xl ">
         <div className="w-24 h-full absolute left-0 bottom-0 bg-gradient-to-r !z-50 from-[#242424]/10 to-transparent"></div>
 
         {/* Left-Right Dark Shadows */}
