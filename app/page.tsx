@@ -5,6 +5,7 @@ import Pitchfinder from "pitchfinder";
 import NextImage from 'next/image';
 import TunerArea from "./components/TunerArea";
 import {motion} from 'framer-motion';
+import { GitHub } from "./lib/icons";
 
 export default function Home() {
   const [note, setNote] = useState<string | null>(null); // Tespit edilen nota
@@ -142,13 +143,13 @@ export default function Home() {
         <motion.h1 initial={{x: -5, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .25}}}  className="flex gap-4 items-center text-neutral-900 justify-center text-3xl lg:text-5xl font-bold tracking-tighter "><div className="lg:w-16 lg:h-16 w-12 h-12 relative"><NextImage alt="Tuner App Logo" src="/tunerLogo.png" className="lg:w-16 lg:h-16 w-12 h-12" fill quality={100} priority /></div>Tuner</motion.h1>
         <motion.p initial={{x: -10, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .25, delay: 0.2}}} className="text-xl lg:text-2xl text-neutral-900">Online Chromatic Tuner.</motion.p>
       </div>
-      <motion.div initial={{x: -15, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .7, delay: 0.6}}} className="mt-8 md:mt-12">
+      <motion.div initial={{x: -15, opacity: 0}} animate={{opacity: 1, x:0, transition: { duration: .7, delay: 0.6}}} className="mt-8 md:mt-12 overflow-hidden">
         <TunerArea order={order} centsOff={centsOff} selected={selected} notes={notes} />     
       </motion.div>
       <div className="text-[#8A8A8A] mt-12 text-center gap-2">
 
       <span>2024 © Made by <a className="text-neutral-600 transition hover:text-neutral-900" href="https://x.com/astrodokki">Emir</a>. <br /> <span>All rights reserved.</span> </span>
-
+      <div className="flex items-center justify-center mt-4 "><a className="" href="https://github.com/emirulucay/tuner-app"><GitHub className="text-neutral-600 hover:text-neutral-900 transition" /></a>  </div>
       </div>
     </div>
   );
