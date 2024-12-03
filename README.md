@@ -47,7 +47,3 @@ The tuner provides real-time feedback, allowing you to make precise adjustments 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-[Add your chosen license here]
