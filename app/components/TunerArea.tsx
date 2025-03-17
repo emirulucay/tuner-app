@@ -5,7 +5,7 @@ import { useTunerStore } from "../store/store";
 
 
 export default function TunerArea() {
-  const {closeValue, centsOff,frequency,note,order,selected,updateStore, notes} = useTunerStore((state) => state);
+  const {closeValue, centsOff,order,selected, notes} = useTunerStore((state) => state);
 
   return (
     <div>
