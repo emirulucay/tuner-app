@@ -1,21 +1,11 @@
 import React from "react";
 import cx from "classnames";
 import { CheckMark } from "../lib/icons";
+import { useTunerStore } from "../store/store";
 
-interface ITunerArea {
-  order: number;
-  centsOff: number;
-  selected: number;
-  notes: INote[];
-}
 
-interface INote {
-  note: string;
-  frequency: number;
-}
-
-export default function TunerArea({ order, centsOff, selected, notes }: ITunerArea) {
-  const closeValue: number = 10;
+export default function TunerArea() {
+  const {closeValue, centsOff,frequency,note,order,selected,updateStore, notes} = useTunerStore((state) => state);
 
   return (
     <div>
@@ -31,8 +21,8 @@ export default function TunerArea({ order, centsOff, selected, notes }: ITunerAr
         <div className="absolute bottom-8">
           <div
             className="text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow">
-            {Math.round(centsOff / 10) < 0 ? `${Math.round(centsOff / 10)} Incrase Tone` : ''}
-            {Math.round(centsOff / 10) > 0 ? `+${Math.round(centsOff / 10)} Decrase Tone` : ''}
+            {Math.round(centsOff / 10) < 0 ? `${Math.round(centsOff / 10)} Tune Up` : ''}
+            {Math.round(centsOff / 10) > 0 ? `+${Math.round(centsOff / 10)} Tune Down` : ''}
             <span className={cx('flex items-center gap-1',{
               'text-primary hidden': Math.round(centsOff / 10) != 0,
             })}>Correct <CheckMark className="text-primary" /></span>
@@ -86,8 +76,8 @@ export default function TunerArea({ order, centsOff, selected, notes }: ITunerAr
         <div className="absolute bottom-8">
           <div
             className="text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow">
-            {Math.round(centsOff / 10) < 0 ? `${Math.round(centsOff / 10)} Incrase Tone` : ''}
-            {Math.round(centsOff / 10) > 0 ? `+${Math.round(centsOff / 10)} Decrase Tone` : ''}
+            {Math.round(centsOff / 10) < 0 ? `${Math.round(centsOff / 10)} Tune Down` : ''}
+            {Math.round(centsOff / 10) > 0 ? `+${Math.round(centsOff / 10)} Tune Up` : ''}
             <span className={cx('flex items-center gap-1',{
               'text-primary hidden': Math.round(centsOff / 10) != 0,
             })}>Correct <CheckMark className="text-primary" /></span>
@@ -126,6 +116,7 @@ export default function TunerArea({ order, centsOff, selected, notes }: ITunerAr
               );
             })}
           </div>
+
         </div>
       </div>
     </div>
