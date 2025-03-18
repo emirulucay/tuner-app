@@ -5,8 +5,8 @@ import { useTunerStore } from "../store/store";
 
 
 export default function TunerArea() {
-  const {closeValue, centsOff,order,selected, notes} = useTunerStore((state) => state);
-
+  const {closeValue, centsOff,order,selected,note, notes} = useTunerStore((state) => state);
+  var _condition = Math.round(centsOff / 10);
   return (
     <div>
       {/* Tuner Div LG */}
@@ -20,10 +20,17 @@ export default function TunerArea() {
         {/* Correct Tune Notification */}
         <div className="absolute bottom-8">
           <div
-            className="text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow">
-            {Math.round(centsOff / 10) < 0 ? `${Math.round(centsOff / 10)} Tune Up` : ''}
-            {Math.round(centsOff / 10) > 0 ? `+${Math.round(centsOff / 10)} Tune Down` : ''}
-            <span className={cx('flex items-center gap-1',{
+            className="flex gap-2 items-center">
+              <div className={cx("text-neutral-500 background-white border border-neutral-100 p-2 rounded-lg shadow", {
+                '!hidden': _condition == 0,
+              })}>{_condition > 0 ? `+${_condition}` : `${_condition}`} </div>
+              <div className="flex items-center justify-center text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow text-lg w-12 h-12">{note}</div>
+              <div className={cx("text-neutral-500 background-white border border-neutral-100 p-2 rounded-lg shadow", {
+                '!hidden': _condition == 0,
+              })}>{_condition > 0 ? `Tune Up` : `Tune Down`} </div>
+            {/* {_condition < 0 ? `${_condition} Tune Down` : ''}
+            {_condition > 0 ? `+${_condition} Tune Up` : ''} */}
+            <span className={cx('flex items-center gap-1 background-white border border-neutral-100 p-2 rounded-lg shadow text-lg',{
               'text-primary hidden': Math.round(centsOff / 10) != 0,
             })}>Correct <CheckMark className="text-primary" /></span>
           </div>
@@ -75,10 +82,17 @@ export default function TunerArea() {
         {/* Correct Tune Notification */}
         <div className="absolute bottom-8">
           <div
-            className="text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow">
-            {Math.round(centsOff / 10) < 0 ? `${Math.round(centsOff / 10)} Tune Down` : ''}
-            {Math.round(centsOff / 10) > 0 ? `+${Math.round(centsOff / 10)} Tune Up` : ''}
-            <span className={cx('flex items-center gap-1',{
+            className="flex gap-2 items-center">
+              <div className={cx("text-neutral-500 background-white border border-neutral-100 p-2 rounded-lg shadow", {
+                '!hidden': _condition == 0,
+              })}>{_condition > 0 ? `+${_condition}` : `${_condition}`} </div>
+              <div className="flex items-center justify-center text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow text-lg w-12 h-12">{note}</div>
+              <div className={cx("text-neutral-500 background-white border border-neutral-100 p-2 rounded-lg shadow", {
+                '!hidden': _condition == 0,
+              })}>{_condition > 0 ? `Tune Up` : `Tune Down`} </div>
+            {/* {_condition < 0 ? `${_condition} Tune Down` : ''}
+            {_condition > 0 ? `+${_condition} Tune Up` : ''} */}
+            <span className={cx('flex items-center gap-1 background-white border border-neutral-100 p-2 rounded-lg shadow text-lg',{
               'text-primary hidden': Math.round(centsOff / 10) != 0,
             })}>Correct <CheckMark className="text-primary" /></span>
           </div>

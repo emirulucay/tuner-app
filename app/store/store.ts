@@ -22,7 +22,7 @@ export const useTunerStore = create<TunerState>()((set) => ({
   centsOff: 0,
   selected: 0,
   frequency: null,
-  note:  null,
+  note:  "C",
   updateStore: (newData) => set((state) => ({
     ...state,
     ...newData
