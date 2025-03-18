@@ -27,9 +27,8 @@ export default function TunerArea() {
               <div className="flex items-center justify-center text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow text-lg w-12 h-12">{note}</div>
               <div className={cx("text-neutral-500 background-white border border-neutral-100 p-2 rounded-lg shadow", {
                 '!hidden': _condition == 0,
-              })}>{_condition > 0 ? `Tune Up` : `Tune Down`} </div>
-            {/* {_condition < 0 ? `${_condition} Tune Down` : ''}
-            {_condition > 0 ? `+${_condition} Tune Up` : ''} */}
+              })}>{_condition > 0 ? `Tune Down` : `Tune Up`} </div>
+
             <span className={cx('flex items-center gap-1 background-white border border-neutral-100 p-2 rounded-lg shadow text-lg',{
               'text-primary hidden': Math.round(centsOff / 10) != 0,
             })}>Correct <CheckMark className="text-primary" /></span>
@@ -89,9 +88,7 @@ export default function TunerArea() {
               <div className="flex items-center justify-center text-neutral-700 background-white border border-neutral-100 p-2 rounded-lg shadow text-lg w-12 h-12">{note}</div>
               <div className={cx("text-neutral-500 background-white border border-neutral-100 p-2 rounded-lg shadow", {
                 '!hidden': _condition == 0,
-              })}>{_condition > 0 ? `Tune Up` : `Tune Down`} </div>
-            {/* {_condition < 0 ? `${_condition} Tune Down` : ''}
-            {_condition > 0 ? `+${_condition} Tune Up` : ''} */}
+              })}>{_condition > 0 ? `Tune Down` : `Tune Up`} </div>
             <span className={cx('flex items-center gap-1 background-white border border-neutral-100 p-2 rounded-lg shadow text-lg',{
               'text-primary hidden': Math.round(centsOff / 10) != 0,
             })}>Correct <CheckMark className="text-primary" /></span>
