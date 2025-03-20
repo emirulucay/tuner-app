@@ -36,7 +36,7 @@ export default function Home() {
         highPassFilter.connect(analyser);
 
 
-        analyser.fftSize = 4096;
+        analyser.fftSize = 2048;
         microphone.connect(analyser);
         analyser.connect(scriptProcessor);
         scriptProcessor.connect(audioContext.destination);
