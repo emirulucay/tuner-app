@@ -14,63 +14,63 @@ export default function Home() {
 
 
   useEffect(() => {
-    // Kullanıcıdan mikrofon izni isteme ve sesi yakalama
-    navigator.mediaDevices
-      .getUserMedia({ audio: true })
-      .then((stream) => {
+    const setupAudio = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         const audioContext = new window.AudioContext();
         const analyser = audioContext.createAnalyser();
         const microphone = audioContext.createMediaStreamSource(stream);
         const scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
-
+  
         const lowPassFilter = audioContext.createBiquadFilter();
         lowPassFilter.type = 'lowpass';
-        lowPassFilter.frequency.value = 1000; // 1000 Hz altı frekanslar geçecek
+        lowPassFilter.frequency.value = 1000;
         microphone.connect(lowPassFilter);
         lowPassFilter.connect(analyser);
-
+  
         const highPassFilter = audioContext.createBiquadFilter();
         highPassFilter.type = 'highpass';
-        highPassFilter.frequency.value = 55; // 50 Hz'in altındaki gürültüleri filtreleyin
+        highPassFilter.frequency.value = 55;
         microphone.connect(highPassFilter);
         highPassFilter.connect(analyser);
-
-
+  
         analyser.fftSize = 2048;
-        microphone.connect(analyser);
         analyser.connect(scriptProcessor);
         scriptProcessor.connect(audioContext.destination);
-
+  
         const detectPitch = Pitchfinder.YIN({
           sampleRate: audioContext.sampleRate,
-          threshold: 0.15,   // Eşik değeri
-        }); // Sample rate kullanarak YIN alg. oluştur
-
-        scriptProcessor.onaudioprocess = function (event) {
-          const audioData = event.inputBuffer.getChannelData(0); // Tek kanal ses verisi
-          const detectedPitch = detectPitch(audioData); // Frekansı tespit et
-
-          // Frekans tespiti yapıldıysa ve 1000 Hz'in altındaysa işlemleri yap
+          threshold: 0.15,
+        });
+  
+        scriptProcessor.onaudioprocess = (event) => {
+          const audioData = event.inputBuffer.getChannelData(0);
+          const detectedPitch = detectPitch(audioData);
+  
           if (detectedPitch && detectedPitch <= 1000) {
-            updateStore({frequency: detectedPitch}); // Frekansı ayarla
-            const closestNote = getNoteFromFrequency(detectedPitch); // Nota tespiti ve ayarlama
-            updateStore({note: closestNote.note});
-            updateStore({centsOff: +closestNote.cents});
-            updateStore({order: closestNote.order});
-            updateStore({selected: closestNote.order * 10 + Math.round(centsOff / 10)});
+            const closestNote = getNoteFromFrequency(detectedPitch);
+            updateStore({
+              frequency: detectedPitch,
+              note: closestNote.note,
+              centsOff: +closestNote.cents,
+              order: closestNote.order,
+              selected: closestNote.order * 10 + Math.round(+closestNote.cents / 10),
+            });
           }
         };
-      })
-      .catch((err) => console.log("Mikrofon erişim hatası:", err));
+      } catch (err) {
+        console.error("Mikrofon erişim hatası:", err);
+      }
+    };
+  
+    setupAudio();
   }, []);
 
   // Frekansa göre nota ismini ve cent farkını bulma fonksiyonu
   function getNoteFromFrequency(frequency: number) {
-    // En yakın notayı ve cent farkını bul
     let closestNote = notes[0];
     let minDiff = Math.abs(frequency - notes[0].frequency);
-    let centDiff = 0;
-
+  
     for (let i = 1; i < notes.length; i++) {
       const diff = Math.abs(frequency - notes[i].frequency);
       if (diff < minDiff) {
@@ -78,9 +78,8 @@ export default function Home() {
         minDiff = diff;
       }
     }
-
-    // Cent farkını hesapla
-    centDiff = 1200 * Math.log2(frequency / closestNote.frequency);
+  
+    const centDiff = 1200 * Math.log2(frequency / closestNote.frequency);
     return { note: closestNote.note, cents: centDiff.toFixed(2), order: notes.indexOf(closestNote) };
   }
 
@@ -95,7 +94,7 @@ export default function Home() {
       </motion.div>
       <div className="text-[#8A8A8A] mt-12 text-center gap-2">
 
-      <span>2024 © Made by <a className="text-neutral-600 transition hover:text-neutral-900" href="https://x.com/astrodokki">Emir</a>. <br /> <span>All rights reserved.</span> </span>
+      <span>2025 © Made by <a className="text-neutral-600 transition hover:text-neutral-900" href="https://x.com/astrodokki">Emir</a>. <br /> <span>All rights reserved.</span> </span>
       <div className="flex items-center justify-center mt-4 "><a className="" href="https://github.com/emirulucay/tuner-app"><GitHub className="text-neutral-600 hover:text-neutral-900 transition" /></a>  </div>
       </div>
     </div>
