@@ -19,7 +19,10 @@ export const metadata: Metadata = {
   description: "Online chromatic tuner app for guitar and more.",
   authors: [{name: 'Emir Uluçay', url:'https://emirulucay.com'}],
   robots: {index: true, follow: true},
-  openGraph: {images: ['/tunerOg.png']}
+  openGraph: {images: ['/tunerOg.png']},
+  icons: {
+    apple: '/icons/apple.png',
+  },
 };
 
 export default function RootLayout({
